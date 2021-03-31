@@ -8,13 +8,13 @@ export default function TodoList() {
 	const [todoList, setTodoList] = useState([]);
 	
 	const loadList = async () => {
-		const response = await fetch('http://nztodo.herokuapp.com/api/tasks/?format=json');
+		const response = await fetch('https://nztodo.herokuapp.com/api/tasks/?format=json');
 		const todos = await response.json();
 		setTodoList(todos);
 	}
 	
 	const deleteTodo = async (todoItem) => {
-		await fetch(`http://nztodo.herokuapp.com/api/task/${todoItem.id}?format=json`, {
+		await fetch(`https://nztodo.herokuapp.com/api/task/${todoItem.id}?format=json`, {
 			method: 'DELETE'
 		});
 		loadList();
