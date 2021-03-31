@@ -3,11 +3,13 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
+import { useState } from 'react';
 
 export default function Login() {
-    const isLoading = false;
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (event) => {
+        setIsLoading(true);
         event.preventDefault();
         const response = await fetch(
             'https://academeez-login-ex.herokuapp.com/api/users/login',
@@ -24,6 +26,7 @@ export default function Login() {
         )
         const data = await response.json();
         console.log(data);
+        setIsLoading(false);
 
     }
 
