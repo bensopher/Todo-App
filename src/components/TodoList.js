@@ -2,25 +2,23 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from '@material-ui/core/Paper';
 import { useState, useEffect } from 'react';
-import { Button } from '@material-ui/core';
+
 
 export default function TodoList() {
 	const [todoList, setTodoList] = useState([]);
 	 
-	
-	useEffect (async() => {
+	const loadList = async () => {
 		const response = await fetch('https://nztodo.herokuapp.com/api/tasks/?format=json');
 		const todos = await response.json();
 		setTodoList(todos);
-	},
-	[]
-	)
+	}
+	useEffect (loadList,[])
 
 	const deleteTodo = async (todoItem) => {
 		await fetch(`https://nztodo.herokuapp.com/api/task/${todoItem.id}?format=json`, {
 			method: 'DELETE'
 		});
-		//loadList();
+		loadList();
 	}
 	
 	return (
