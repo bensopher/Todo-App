@@ -12,7 +12,7 @@ export default function TodoList() {
 		const todos = await response.json();
 		setTodoList(todos);
 	}
-	useEffect (loadList,[])
+	useEffect(() => { loadList() },[])
 
 	const deleteTodo = async (todoItem) => {
 		await fetch(`https://nztodo.herokuapp.com/api/task/${todoItem.id}?format=json`, {
